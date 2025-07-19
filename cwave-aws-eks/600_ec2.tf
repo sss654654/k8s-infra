@@ -30,6 +30,21 @@ resource "aws_instance" "nginx_instance" {
     user_data = <<-EOF
                 #!/bin/bash
                 yum update -y
+
+                # Ruby 설치
+                yum install -y ruby wget
+
+                # CodeDeploy Agent 설치
+                cd /home/ec2-user
+                wget https://aws-codedeploy-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/latest/install
+                chmod +x ./install
+                ./install auto
+
+                # CodeDeploy Agent 서비스 시작
+                systemctl start codedeploy-agent
+                systemctl enable codedeploy-agent
+
+                # nginx 설치
                 amazon-linux-extras install nginx1 -y
                 systemctl start nginx
                 systemctl enable nginx

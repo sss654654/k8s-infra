@@ -9,6 +9,13 @@ provider "aws" {
 }
 ## 버전 설정
 terraform {
+  backend "s3" {
+    bucket         = "cwave-terraform-state-subin"
+    key            = "eks/terraform.tfstate"
+    region         = "ap-northeast-2"
+    dynamodb_table = "cwave-terraform-locks"
+    encrypt        = true
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"

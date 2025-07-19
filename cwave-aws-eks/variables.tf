@@ -67,3 +67,49 @@ variable "eks_namespace_roles" {
   }))
   default = {}
 }
+
+variable "rds_backup_retention_period" {
+  description = "backup retention"
+  type        = number
+  default     = 10
+}
+variable "rds_password" {
+  description = "backup retention"
+  type        = string
+  default     = "user12345"
+}
+variable "rds_username" {
+  description = "backup retention"
+  type        = string
+  default     = "user"
+}
+
+variable "rds_database_name" {
+  description = "backup retention"
+  type        = string
+  default     = "istory"
+}
+
+variable "rds_max_allocated_storage" {
+  description = "backup retention"
+  type        = number
+  default     = 100
+}
+
+variable "rds_allocated_storage" {
+    description = "The allocated storage in gigabytes"
+    type        = number
+    default     = 20
+}
+
+variable "rds_engine_version" {
+  description = "The engine version to use"
+  type        = string
+  default     = "8.0.35"
+}
+
+variable "rds_instance_class" {
+  description = "The instance type of the RDS instance"
+  type        = string
+  default     = "db.t3.micro"
+}
